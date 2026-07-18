@@ -1,7 +1,9 @@
-# Outer Joins - Ministore
-
-Trabajo práctico realizado para Coderhouse.
-
-## Contenido
-- schema.sql
-- soluciones.sql
+1. ¿ Porque usaste LEFT JOIN para la Consulta 1 y no INNER JOIN? ¿Qué se perdería si usaras INNER JOIN?
+Usé LEFT JOIN porque necesitaba mostrar todos los productos, incluso aquellos que nunca fueron vendidos. Si hubiera utilizado INNER JOIN, solo aparecerían los productos que tienen al menos una venta asociada, por lo que se perderían los dos productos que no registran ventas. El LEFT JOIN conserva todos los registros de la tabla productos y muestra NULL cuando no existe una venta relacionada.
+2. ¿Por qué usaste RIGHT JOIN para la Consulta 2? ¿Qué tabla está a la izquierda y cuál a la derecha en tu consulta?
+Usé RIGHT JOIN para mostrar todas las ventas, incluso las que no tienen un producto válido asociado. En mi consulta, la tabla productos está a la izquierda y la tabla ventas está a la derecha. De esta manera, también se identifica la venta con producto_id = 999, que no tiene coincidencia en la tabla de productos.
+3. ¿Qué representan los valores NULL en cada resultado?
+En la Consulta 1, cuando venta_id es NULL, significa que ese producto nunca fue vendido y, por lo tanto, no existe un registro correspondiente en la tabla de ventas.
+En la Consulta 2, cuando producto_id de la tabla productos es NULL, significa que existe una venta cuyo producto no está registrado en la tabla de productos, como ocurre con la venta que tiene producto_id = 999.
+4. ¿Cuándo usarías FULL OUTER JOIN en un caso real de negocio?
+Usaría FULL OUTER JOIN cuando necesite obtener toda la información de ambas tablas, incluyendo los registros que no tienen coincidencia. Por ejemplo, para comparar el listado de productos con el historial de ventas y detectar tanto productos sin vender como ventas que hacen referencia a productos inexistentes.
